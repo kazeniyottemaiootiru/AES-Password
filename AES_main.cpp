@@ -13,11 +13,11 @@ vector<unsigned char> AESKeySchedule::Rcon;
 
 bool handleKey(string& key) {
     if (key.size() > BLOCK_SIZE) {
-        cerr << "´íÎó£ºÃÜÔ¿³¤¶ÈÓ¦Îª16×Ö½Ú¡£" << endl;
+        cerr << "é”™è¯¯ï¼šå¯†é’¥é•¿åº¦åº”ä¸º16å­—èŠ‚ã€‚" << endl;
         return true;
     }
     else if (key.size() < BLOCK_SIZE) {
-        // ½«ÃÜÔ¿²¹È«µ½16×Ö½Ú£¬Ê¹ÓÃASCI ÂëÖÐ¶þ½øÖÆÎª00000000(¼´'\0')²¹È«
+        // å°†å¯†é’¥è¡¥å…¨åˆ°16å­—èŠ‚ï¼Œä½¿ç”¨ASCIIç ä¸­äºŒè¿›åˆ¶ä¸º00000000(å³'\0')è¡¥å…¨
         key.append(BLOCK_SIZE - key.size(), '\0');
         return false;
     }
@@ -27,37 +27,37 @@ int main() {
     string choice, inputPath, outputPath, userKey;
     bool flag = true;
 
-    cout << "#######################" << endl << "#    AESÃÜÂë²Ù×÷Æ÷    #" << endl <<
+    cout << "#######################" << endl << "#    AESå¯†ç æ“ä½œå™¨    #" << endl <<
         "#######################" << endl;
     while (flag){
-        cout << "ÇëÊäÈë16×Ö½ÚµÄÃÜÔ¿£¨¿ÉÎª¿Õ£©£º";
+        cout << "è¯·è¾“å…¥16å­—èŠ‚çš„å¯†é’¥ï¼ˆå¯ä¸ºç©ºï¼‰ï¼š";
         getline(cin, userKey);
 
-        flag = handleKey(userKey);  // µ÷ÓÃº¯Êý´¦ÀíÃÜÔ¿
+        flag = handleKey(userKey);  // è°ƒç”¨å‡½æ•°å¤„ç†å¯†é’¥
     }
     
     AESHandler aes(userKey);
 
-    cout << "1. ¼ÓÃÜÎÄ¼þ" << endl << "2. ½âÃÜÎÄ¼þ" << endl << "ÇëÑ¡Ôñ£º";
+    cout << "1. åŠ å¯†æ–‡ä»¶" << endl << "2. è§£å¯†æ–‡ä»¶" << endl << "è¯·é€‰æ‹©ï¼š";
     cin >> choice;
     cin.ignore();
 
     if (choice == "1") {
-        cout << "ÇëÊäÈëÒª¼ÓÃÜµÄÎÄ¼þÂ·¾¶: ";
+        cout << "è¯·è¾“å…¥è¦åŠ å¯†çš„æ–‡ä»¶è·¯å¾„: ";
         getline(cin, inputPath);
-        cout << "ÇëÊäÈë¼ÓÃÜºóÎÄ¼þµÄ±£´æÂ·¾¶: ";
+        cout << "è¯·è¾“å…¥åŠ å¯†åŽæ–‡ä»¶çš„ä¿å­˜è·¯å¾„: ";
         getline(cin, outputPath);
-        aes.encryptFile(inputPath, outputPath);  // Ö´ÐÐÎÄ¼þ¼ÓÃÜ
+        aes.encryptFile(inputPath, outputPath);  // æ‰§è¡Œæ–‡ä»¶åŠ å¯†
     }
     else if (choice == "2") {
-        cout << "ÇëÊäÈëÒª½âÃÜµÄÎÄ¼þÂ·¾¶: ";
+        cout << "è¯·è¾“å…¥è¦è§£å¯†çš„æ–‡ä»¶è·¯å¾„: ";
         getline(cin, inputPath);
-        cout << "ÇëÊäÈë½âÃÜºóÎÄ¼þµÄ±£´æÂ·¾¶: ";
+        cout << "è¯·è¾“å…¥è§£å¯†åŽæ–‡ä»¶çš„ä¿å­˜è·¯å¾„: ";
         getline(cin, outputPath);
-        aes.decryptFile(inputPath, outputPath);  // Ö´ÐÐÎÄ¼þ½âÃÜ
+        aes.decryptFile(inputPath, outputPath);  // æ‰§è¡Œæ–‡ä»¶è§£å¯†
     }
     else {
-        cerr << "ÎÞÐ§Ñ¡Ïî£¡" << endl;
+        cerr << "æ— æ•ˆé€‰é¡¹ï¼" << endl;
     }
     return 0;
 }
