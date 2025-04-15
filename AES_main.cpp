@@ -20,7 +20,7 @@ bool handleKey(string& key) {
         // 将密钥补全到16字节，使用ASCII码中二进制为00000000(即'\0')补全
         key.append(BLOCK_SIZE - key.size(), '\0');
         return false;
-    }
+    }else{return false;}
 }
 
 int main() {
